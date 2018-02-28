@@ -5,6 +5,8 @@ C-s C-w - Save the file with a different name
 C-x C-c - Quit Emacs
 M-x recover-file - Recovers the auto-saved file
 C-k - Deletes the whole line and puts it into the clipboard
+C-d - Deletes the next character
+M-^ - Joins two lines deleting new lines and indentations between them
 C-y - Pastes from clipboard
 C-space - Highlighting a region
 M-w - Copy the region to clipboard
@@ -33,6 +35,8 @@ C-v - Down page
 M-v - Up page
 C-M-v - Down other page
 M-C-v - Up other page
+M-m - Move to the beginning of the line (past indentation)
+C-x d - Invoke Dired
 
 C-M-f - Move by s-expression forward
 C-M-b - Move by s-expression backward
