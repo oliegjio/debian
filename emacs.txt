@@ -17,6 +17,28 @@ M-< - Beginning of buffer
 C-/ - Undo
 C-g C-/ - Redo
 
+M-1 M-0 - Repeat next command 10 times
+M-- - Negative index
+
+M-f - Forward a word
+M-b - Backward a word
+M-e - Paragraph forward
+M-a - Paragraph backward
+M-c - Capitalize next word
+C-n - Next line
+C-p - Prev line
+C-f - Forward by character
+C-b - Backward by character
+C-v - Down page
+M-v - Up page
+C-M-v - Down other page
+M-C-v - Up other page
+
+C-M-f - Move by s-expression forward
+C-M-b - Move by s-expression backward
+C-M-d - Move into a list type
+C-M-u - Move out a list type
+
 C-x b - Switches buffers
 C-x C-b - Switches buffers, shows the list of buffers
 C-x o - Go to the other window
@@ -32,3 +54,18 @@ M-x grep - Greps a pattern in the files you specify and shows the results in a *
 M-x rgrep - Recursive grep
 
 M-x pwd - Prints the working directory
+M-x indent-region - Indents the region
+M-: - Opens the evaluate buffer to execute a lisp statement
+C-h v - See the value of a variable
+e-x C-e - Evaluate a lisp command at the cursor
+M-x goto-line - Goto a line
+
+
+================================================
+
+
+
+`~/.emacs.d` hold all the packages for Emacs
+
+Execute `goto-line` command shortcut:
+(global-set-key (kbd "C-c j") 'goto-line)
