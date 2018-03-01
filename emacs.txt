@@ -1,3 +1,5 @@
+M-x load-file RET RET - Reload .emacs
+
 C-x C-s - Save a file
 C-x C-f - Find a file
 C-x s - Save all files
@@ -5,6 +7,8 @@ C-s C-w - Save the file with a different name
 C-x C-c - Quit Emacs
 M-x recover-file - Recovers the auto-saved file
 C-k - Deletes the whole line and puts it into the clipboard
+A-S-k - Actually deletes a line
+M-d - Kill forward to the end of the next word
 C-d - Deletes the next character
 M-^ - Joins two lines deleting new lines and indentations between them
 C-y - Pastes from clipboard
@@ -72,4 +76,4 @@ M-x goto-line - Goto a line
 `~/.emacs.d` hold all the packages for Emacs
 
 Execute `goto-line` command shortcut:
-(global-set-key (kbd "C-c j") 'goto-line)
+(global-set-key (kbd "C-c g") 'goto-line)

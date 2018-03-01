@@ -1,0 +1,13 @@
+import XMonad
+import XMonad.Hooks.DynamicLog
+
+main = do
+  xmonad =<< xmobar defaultConfig
+    { terminal = "sakura"
+    , modMask = mod4Mask
+    , borderWidth = 1
+    , normalBorderColor = "#888800"
+    , focusedBorderColor = "#ffff00"
+    }
+
+

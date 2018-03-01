@@ -1,0 +1,5 @@
+Config
+  { font    = "xft:Monaco:size=13:bold:antialias=true"
+  , bgColor = "#1d2224"
+  , fgColor = "#edd400"
+  }
