@@ -37,6 +37,8 @@ C-f - Forward by character
 C-b - Backward by character
 C-v - Down page
 M-v - Up page
+
+
 C-M-v - Down other page
 M-C-v - Up other page
 M-m - Move to the beginning of the line (past indentation)

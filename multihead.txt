@@ -1,0 +1,8 @@
+eDP-1 - Original display
+HDMI-1 - Secondary display
+
+Extended:
+xrandr --output eDP-1 --mode 1920x1080 --scale 1x1 --output HDMI-1 --mode 1920x1080 --scale 1x1 --left-of eDP-1
+
+Mirroring:
+xrandr --output eDP-1 --mode 1920x1080 --scale 1x1 --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --scale 1x1
