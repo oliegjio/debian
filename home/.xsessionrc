@@ -1,0 +1,2 @@
+feh --bg-fill /home/debie/Pictures/golden-bridge.jpg &
+/usr/bin/xmonad

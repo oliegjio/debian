@@ -1,0 +1,5 @@
+xmonad suckless-tools xscreensaver
+xorg xserver-xorg-core
+alsa-utils
+emacs vim git
+chromium

@@ -1,0 +1,4 @@
+If after unplugging the ethernet cable ip address disappeard for inteface, do:
+1. sudo vim /etc/network/interfaces
+2. Write: auto eth2s0
+3. sudo service networking restart

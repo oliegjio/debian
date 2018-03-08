@@ -1,0 +1,43 @@
+Config
+  { font     = "xft:Monaco:size=13:bold:antialias=true"
+  , bgColor  = "#1d2224"
+  , fgColor  = "#edd400"
+  , sepChar  = "%"
+  , alignSep = "}{"
+  , template = " %StdinReader% }{ %battery% | %multicpu% | %memory% | %dynnetwork% | %date% "
+  , commands =
+    	     [ Run Battery    [ "--template" , "Batt: <acstatus>"
+                              , "--Low"      , "10"
+                              , "--High"     , "80"
+                              , "--low"      , "red"
+                              , "--normal"   , "orange"
+                              , "--high"     , "green"
+                              , "--"
+                              , "-o"         , "<left>% (<timeleft>)"
+                              , "-O"         , "<fc=#ff8800>Charging</fc>"
+                              , "-i"         , "<fc=#00ff00>Charged</fc>"
+                              ] 50
+             , Run MultiCpu   [ "--template" , "Cpu: <total0> - <total1> - <total2> - <total3> %"
+                              , "--Low"      , "50"
+                              , "--High"     , "85"
+                              , "--low"      , "green"
+                              , "--normal"   , "orange"
+                              , "--high"     , "red"
+                              ] 10
+	     , Run Memory     [ "--template" ,"Mem: <usedratio>%"
+                              , "--Low"      , "20"
+                              , "--High"     , "90"
+                              , "--low"      , "green"
+                              , "--normal"   , "orange"
+                              , "--high"     , "red"
+                              ] 10
+	     , Run DynNetwork [ "--template" , "<dev>: <tx> - <rx> kB/s"
+                              , "--Low"      , "300000"
+                              , "--High"     , "3000000"
+                              , "--low"      , "green"
+                              , "--normal"   , "orange"
+                              , "--high"     , "red"
+                              ] 10
+	     , Run StdinReader
+	     ]
+  }

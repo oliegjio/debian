@@ -1,1 +1,0 @@
-You can change "change keyboard layout" shortcut in `/etc/default/keyboard`.
