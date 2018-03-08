@@ -3,3 +3,5 @@ xorg xserver-xorg-core
 alsa-utils
 emacs vim git
 chromium
+aria2
+sakura
