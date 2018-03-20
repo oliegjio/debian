@@ -1,0 +1,3 @@
+Install Free Pascal: sudo apt-get install fpc
+
+Node.js should be installed througth official website!
