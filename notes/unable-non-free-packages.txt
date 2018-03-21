@@ -1,0 +1,5 @@
+Add to `/etc/apt/sources.list` repositories `non-free` to the end, like:
+```
+deb http://deb.debian.org/debian/ buster main non-free
+deb-src http://deb.debian.org/debian/ buster main non-free
+```
