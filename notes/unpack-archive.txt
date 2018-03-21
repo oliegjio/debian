@@ -1,4 +1,4 @@
 Install: `sudo apt-get install unrar-free p7zip-full`.
+Insatll (non-free): `sudo apt-get install p7zip-rar`.
 
-7Zip: `7z x <archive_name>`.
-RAR: `unrar x <archive_name`.
+7Zip, RAR: `7z x <archive_name>`.
