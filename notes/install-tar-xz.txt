@@ -1,0 +1,5 @@
+1. Extract: `tar xf <archive_name>`.
+2. `cd <archive_name>`.
+3. `./configure`.
+4. `make`.
+5. `sudo make install`.
