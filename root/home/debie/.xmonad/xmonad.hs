@@ -3,7 +3,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Util.Scratchpad
+import XMonad.Util.NamedScratchpad
 import XMonad.StackSet
 import XMonad.Layout.NoBorders
 
@@ -18,8 +18,7 @@ main = do
     , normalBorderColor  = "#888800"
     , focusedBorderColor = "#ffff00"
     , layoutHook         = smartBorders $ myLayout
-    , manageHook         = myManageHook <+> manageScratchPad
-                                        <+> manageHook defaultConfig
+    , manageHook         = myManageHook <+> manageHook defaultConfig
     } `additionalKeysP` myAdditionalKeys)
 
 myAdditionalKeys =
@@ -33,34 +32,31 @@ myAdditionalKeys =
   , ("M-<Esc>"                , scratchPad                       )
   ]
   where
-    scratchPad = scratchpadSpawnActionTerminal myTerminal
+    scratchPad = namedScratchpadAction myScratchPads "terminal"
 
 myLayout = tiled ||| Mirror tiled ||| Full
   where
-    -- default tiling algorithm partitions the screen into two panes
+    -- Default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
- 
-    -- The default number of windows in the master pane
-    nmaster = 1
- 
-    -- Default proportion of screen occupied by master pane
-    ratio   = 1/2
- 
-    -- Percent of screen to increment by when resizing panes
-    delta   = 3/100
+    nmaster = 1     -- The default number of windows in the master pane
+    ratio   = 1/2   -- Default proportion of screen occupied by master pane
+    delta   = 3/100 -- Percent of screen to increment by when resizing panes
+
+myScratchPads = [NS "terminal" spawnTerm findTerm manageTerm] where
+  spawnTerm  = "sakura --class scratchpad --name scratchpad"
+  findTerm   = className =? "scratchpad"
+  manageTerm = (customFloating $ RationalRect l t w h) where
+    h = 0.4
+    w = 1
+    t = 1 - h
+    l = 1 - w
 
 myManageHook :: ManageHook
 myManageHook = composeAll
   [ className =? "Viewnior"      --> doFloat
   , className =? "Dialog"        --> doFloat
   , className =? "immersiveShow" --> doFloat
+  , namedScratchpadManageHook myScratchPads
   ]
 
-manageScratchPad :: ManageHook
-manageScratchPad = scratchpadManageHook (RationalRect l t w h)
-  where
-    h = 0.1
-    w = 1
-    t = 1 - h
-    l = 1 - w
 
