@@ -1,11 +1,11 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Util.EZConfig
-import XMonad.Util.Run
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.NamedScratchpad
 import XMonad.StackSet
 import XMonad.Layout.NoBorders
+import XMonad.Util.Cursor
 
 main = do
   xmonad =<< xmobar (defaultConfig
@@ -17,6 +17,10 @@ main = do
     , focusedBorderColor = "#ffff00"
     , layoutHook         = smartBorders $ myLayout
     , manageHook         = myManageHook <+> manageHook defaultConfig
+    , startupHook        = do
+                             setDefaultCursor xC_left_ptr
+                             spawn "feh --bg-fill /home/debie/Pictures/golden-bridge.jpg"
+                             startupHook defaultConfig
     } `additionalKeysP` myAdditionalKeys)
 
 myAdditionalKeys =
