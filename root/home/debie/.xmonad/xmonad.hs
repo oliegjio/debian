@@ -7,11 +7,9 @@ import XMonad.Util.NamedScratchpad
 import XMonad.StackSet
 import XMonad.Layout.NoBorders
 
-myTerminal = "sakura"
-
 main = do
   xmonad =<< xmobar (defaultConfig
-    { terminal           = myTerminal
+    { terminal           = "sakura"
     , modMask            = mod4Mask
     , borderWidth        = 1
     , handleEventHook    = fullscreenEventHook
@@ -32,31 +30,31 @@ myAdditionalKeys =
   , ("M-<Esc>"                , scratchPad                       )
   ]
   where
-    scratchPad = namedScratchpadAction myScratchPads "terminal"
+    scratchPad = namedScratchpadAction myScratchpads "terminal"
 
 myLayout = tiled ||| Mirror tiled ||| Full
   where
-    -- Default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
     nmaster = 1     -- The default number of windows in the master pane
     ratio   = 1/2   -- Default proportion of screen occupied by master pane
     delta   = 3/100 -- Percent of screen to increment by when resizing panes
 
-myScratchPads = [NS "terminal" spawnTerm findTerm manageTerm] where
-  spawnTerm  = "sakura --class scratchpad --name scratchpad"
-  findTerm   = className =? "scratchpad"
-  manageTerm = (customFloating $ RationalRect l t w h) where
-    h = 0.4
-    w = 1
-    t = 1 - h
-    l = 1 - w
+myScratchpads = [NS "terminal" spawnTerm findTerm manageTerm]
+  where
+    spawnTerm  = "sakura --class scratchpad --name scratchpad"
+    findTerm   = className =? "scratchpad"
+    manageTerm = (customFloating $ RationalRect l t w h)
+      where
+        h = 0.4
+        w = 1
+        t = 1 - h
+        l = 1 - w
 
 myManageHook :: ManageHook
 myManageHook = composeAll
   [ className =? "Viewnior"      --> doFloat
   , className =? "Dialog"        --> doFloat
   , className =? "immersiveShow" --> doFloat
-  , namedScratchpadManageHook myScratchPads
+  , namedScratchpadManageHook myScratchpads
   ]
-
 
