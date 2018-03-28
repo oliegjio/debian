@@ -6,6 +6,13 @@ import XMonad.Util.NamedScratchpad
 import XMonad.StackSet
 import XMonad.Layout.NoBorders
 import XMonad.Util.Cursor
+import XMonad.Layout.IndependentScreens
+
+multihead = do
+  count <- countScreens
+  if count > 1
+    then spawn "xrandr --output HDMI-1 --off"
+    else spawn "xrandr --output HDMI-1 --auto --left-of eDP-1"
 
 main = do
   xmonad =<< xmobar (defaultConfig
@@ -20,6 +27,7 @@ main = do
     , startupHook        = do
                              setDefaultCursor xC_left_ptr
                              spawn "feh --bg-fill /home/debie/Pictures/golden-bridge.jpg"
+                             multihead
                              startupHook defaultConfig
     } `additionalKeysP` myAdditionalKeys)
 
@@ -32,6 +40,7 @@ myAdditionalKeys =
   , ("M-z"                    , spawn "slock"                    )
   , ("M-p"                    , spawn "dmenu_run -fn 'Monaco-15'")
   , ("M-<Esc>"                , scratchPad                       )
+  , ("M-<Insert>"             , multihead                        )
   ]
   where
     scratchPad = namedScratchpadAction myScratchpads "terminal"
