@@ -8,33 +8,35 @@ import XMonad.Layout.NoBorders
 import XMonad.Util.Cursor
 import XMonad.Layout.IndependentScreens
 
-multihead = do
-  count <- countScreens
-  if count > 1
-    then spawn "xrandr --output HDMI-1 --off"
-    else spawn "xrandr --output HDMI-1 --auto --left-of eDP-1"
-
 main = do
   xmonad =<< xmobar (defaultConfig
     { terminal           = "sakura"
     , modMask            = mod4Mask
     , borderWidth        = 1
-    , handleEventHook    = fullscreenEventHook
+    , handleEventHook    = myHandleEventHook
     , normalBorderColor  = "#888800"
     , focusedBorderColor = "#ffff00"
-    , layoutHook         = smartBorders $ myLayout
-    , manageHook         = myManageHook <+> manageHook defaultConfig
+    , layoutHook         = myLayout
+    , manageHook         = myManageHook
     , startupHook        = myStartupHook
-    } `additionalKeysP` myAdditionalKeys)
+    } `additionalKeysP` myAdditionalKeysP)
+
+detectScreens = do
+  count <- countScreens
+  if count > 1
+    then spawn "xrandr --output HDMI-1 --off"
+    else spawn "xrandr --output HDMI-1 --auto --left-of eDP-1"
+
+myHandleEventHook = fullscreenEventHook
 
 myStartupHook = do
-  multihead
+  detectScreens
   setDefaultCursor xC_left_ptr
   spawn "feh --bg-fill /home/debie/Pictures/golden-bridge.jpg"
   spawn "dropbox start"
   startupHook defaultConfig
 
-myAdditionalKeys =
+myAdditionalKeysP =
   [ ("<XF86AudioRaiseVolume>" , spawn "amixer -q sset Master 2%+")
   , ("<XF86AudioLowerVolume>" , spawn "amixer -q sset Master 2%-")
   , ("<XF86AudioMute>"        , spawn "amixer set Master toggle" )
@@ -42,19 +44,18 @@ myAdditionalKeys =
   , ("<XF86MonBrightnessDown>", spawn "brightness-down 25"       )
   , ("M-z"                    , spawn "slock"                    )
   , ("M-p"                    , spawn "dmenu_run -fn 'Monaco-15'")
-  , ("M-<Esc>"                , scratchPad                       )
-  , ("M-<Insert>"             , multihead                        )
+  , ("M-<Esc>"                , scratchPadTerminal               )
+  , ("M-<Insert>"             , detectScreens                    )
   ]
-  where
-    scratchPad = namedScratchpadAction myScratchpads "terminal"
-
-myLayout = tiled ||| Mirror tiled ||| Full
+    
+myLayout = smartBorders $ tiled ||| Mirror tiled ||| Full
   where
     tiled   = Tall nmaster delta ratio
     nmaster = 1     -- The default number of windows in the master pane
     ratio   = 1/2   -- Default proportion of screen occupied by master pane
     delta   = 3/100 -- Percent of screen to increment by when resizing panes
 
+scratchPadTerminal = namedScratchpadAction myScratchpads "terminal"
 myScratchpads = [NS "terminal" spawnTerm findTerm manageTerm]
   where
     spawnTerm  = "sakura --class scratchpad --name scratchpad"
@@ -72,5 +73,6 @@ myManageHook = composeAll
   , className =? "Dialog"        --> doFloat
   , className =? "immersiveShow" --> doFloat
   , namedScratchpadManageHook myScratchpads
+  , manageHook defaultConfig
   ]
 
