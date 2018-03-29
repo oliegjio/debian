@@ -19,4 +19,4 @@ Meta+u - Undo
 Meta+e - Redo
 Ctrl+4 - Search and replace
 Esc+$ - Toggle wrap
-Ctrl+_ - Jump to <line,column>
+Meta+g / Ctrl+_ - Jump to <line,column> (also `nano +<line_number> <file_name>`)
