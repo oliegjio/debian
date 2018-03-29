@@ -1,7 +1,9 @@
 xmonad xmobar suckless-tools xscreensaver
 xorg xserver-xorg-core
+
 alsa-utils
-emacs vim git
+pulseaudio
+emacs vim-gtk3 git
 chromium
 aria2
 sakura
