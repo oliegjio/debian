@@ -10,10 +10,13 @@ Ctrl+Space - Forward a word
 Meta+Space - Backward a word
 Ctrl+o - Save a file
 Ctrl+c - Show cursor
-Ctrl+^ - Mark text
-Meta+^ - Copy marked text
+Ctrl+6 - Mark text
+Meta+6 - Copy marked text
 Ctrl+k - Cut marked text
 Ctrl+k - Also deletes a line if not marked
 Ctrl+w - Search (Ctrl+c - Cancel)
 Meta+u - Undo
 Meta+e - Redo
+Ctrl+4 - Search and replace
+Esc+$ - Toggle wrap
+Ctrl+_ - Jump to <line,column>
