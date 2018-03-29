@@ -24,18 +24,14 @@ main = do
     , focusedBorderColor = "#ffff00"
     , layoutHook         = smartBorders $ myLayout
     , manageHook         = myManageHook <+> manageHook defaultConfig
-    , startupHook        = do
-                             setDefaultCursor xC_left_ptr
-                             spawn "feh --bg-fill /home/debie/Pictures/golden-bridge.jpg"
-                             multihead
-                             startupHook defaultConfig
+    , startupHook        = myStartupHook
     } `additionalKeysP` myAdditionalKeys)
 
 myStartupHook = do
+  multihead
   setDefaultCursor xC_left_ptr
   spawn "feh --bg-fill /home/debie/Pictures/golden-bridge.jpg"
   spawn "dropbox start"
-  multihead
   startupHook defaultConfig
 
 myAdditionalKeys =
