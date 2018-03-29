@@ -1,0 +1,19 @@
+Ctrl+f - Forward a line
+Ctrl+b - Backward a line
+Ctrl+p - Up a line
+Ctrl+n - Down a line
+Ctrl+e - End of a line
+Ctrl+a - Start of a line
+Ctrl+v - Down a page
+Ctrl+y - Up a page
+Ctrl+Space - Forward a word
+Meta+Space - Backward a word
+Ctrl+o - Save a file
+Ctrl+c - Show cursor
+Ctrl+^ - Mark text
+Meta+^ - Copy marked text
+Ctrl+k - Cut marked text
+Ctrl+k - Also deletes a line if not marked
+Ctrl+w - Search (Ctrl+c - Cancel)
+Meta+u - Undo
+Meta+e - Redo
