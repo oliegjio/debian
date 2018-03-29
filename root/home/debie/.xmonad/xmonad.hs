@@ -31,6 +31,13 @@ main = do
                              startupHook defaultConfig
     } `additionalKeysP` myAdditionalKeys)
 
+myStartupHook = do
+  setDefaultCursor xC_left_ptr
+  spawn "feh --bg-fill /home/debie/Pictures/golden-bridge.jpg"
+  spawn "dropbox start"
+  multihead
+  startupHook defaultConfig
+
 myAdditionalKeys =
   [ ("<XF86AudioRaiseVolume>" , spawn "amixer -q sset Master 2%+")
   , ("<XF86AudioLowerVolume>" , spawn "amixer -q sset Master 2%-")
