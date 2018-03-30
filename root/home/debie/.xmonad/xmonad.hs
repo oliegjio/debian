@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Util.EZConfig
 import XMonad.Hooks.EwmhDesktops
@@ -12,17 +13,17 @@ import System.IO
 
 main = do
   xmproc <- spawnPipe "xmobar"
-  xmonad $ defaultConfig
+  xmonad $ docks defaultConfig
     { terminal           = "sakura"
     , modMask            = mod4Mask
     , borderWidth        = 1
     , handleEventHook    = myHandleEventHook
     , normalBorderColor  = "#888800"
     , focusedBorderColor = "#ffff00"
-    , layoutHook         = myLayout
+    , layoutHook         = myLayoutHook
     , logHook            = dynamicLogWithPP xmobarPP
                          { ppOutput = hPutStrLn xmproc
-                         , ppTitle  = xmobarColor xmobarTitleColor "" . shorten 50
+                         , ppTitle  = xmobarColor "green" "" . shorten 50
                          }
     , startupHook        = myStartupHook
     , manageHook         = myManageHook
@@ -55,7 +56,7 @@ myAdditionalKeysP =
   , ("M-<Insert>"             , detectScreens                    )
   ]
     
-myLayout = smartBorders $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = smartBorders $ avoidStruts $ tiled ||| Mirror tiled ||| Full
   where
     tiled   = Tall nmaster delta ratio
     nmaster = 1     -- The default number of windows in the master pane
@@ -80,6 +81,7 @@ myManageHook = composeAll
   , className =? "Dialog"        --> doFloat
   , className =? "immersiveShow" --> doFloat
   , namedScratchpadManageHook myScratchpads
+  , manageDocks
   , manageHook defaultConfig
   ]
 
