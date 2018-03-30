@@ -15,6 +15,7 @@ Meta+6 - Copy marked text
 Ctrl+k - Cut marked text
 Ctrl+k - Also deletes a line if not marked
 Ctrl+w - Search (Ctrl+c - Cancel)
+Alt+w - Search for the same string
 Meta+u - Undo
 Meta+e - Redo
 Ctrl+4 - Search and replace
