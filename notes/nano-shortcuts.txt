@@ -2,6 +2,8 @@ Ctrl+f - Forward a line
 Ctrl+b - Backward a line
 Ctrl+p - Up a line
 Ctrl+n - Down a line
+Meta+- - Scroll down
+Meta++ - Scroll up
 Ctrl+e - End of a line
 Ctrl+a - Start of a line
 Ctrl+v - Down a page
@@ -14,10 +16,14 @@ Ctrl+6 / Meta+a - Mark text
 Meta+6 - Copy marked text
 Ctrl+k - Cut marked text
 Ctrl+k - Also deletes a line if not marked
+Ctrl+d - Delete character under cursor
+Ctrl+h - Delete character before cursor
 Ctrl+w - Search (Ctrl+c - Cancel)
 Alt+w - Search for the same string
 Meta+u - Undo
 Meta+e - Redo
-Ctrl+4 - Search and replace
+Ctrl+4 / Ctrl+\ / Alt+r - Search and replace
+Alt+p - Show whitespace
 Esc+$ - Toggle wrap
 Meta+g / Ctrl+_ - Jump to <line,column> (also `nano +<line_number> <file_name>`)
+Ctrl+r - Insert some file content into current file at cursor location
