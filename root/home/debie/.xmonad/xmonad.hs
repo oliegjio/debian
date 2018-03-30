@@ -7,9 +7,12 @@ import XMonad.StackSet
 import XMonad.Layout.NoBorders
 import XMonad.Util.Cursor
 import XMonad.Layout.IndependentScreens
+import XMonad.Util.Run (spawnPipe)
+import System.IO
 
 main = do
-  xmonad =<< xmobar (defaultConfig
+  xmproc <- spawnPipe "xmobar"
+  xmonad $ defaultConfig
     { terminal           = "sakura"
     , modMask            = mod4Mask
     , borderWidth        = 1
@@ -17,9 +20,13 @@ main = do
     , normalBorderColor  = "#888800"
     , focusedBorderColor = "#ffff00"
     , layoutHook         = myLayout
-    , manageHook         = myManageHook
+    , logHook            = dynamicLogWithPP xmobarPP
+                         { ppOutput = hPutStrLn xmproc
+                         , ppTitle  = xmobarColor xmobarTitleColor "" . shorten 50
+                         }
     , startupHook        = myStartupHook
-    } `additionalKeysP` myAdditionalKeysP)
+    , manageHook         = myManageHook
+    } `additionalKeysP` myAdditionalKeysP
 
 detectScreens = do
   count <- countScreens
