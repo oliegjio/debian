@@ -8,7 +8,8 @@ import XMonad.StackSet
 import XMonad.Layout.NoBorders
 import XMonad.Util.Cursor
 import XMonad.Layout.IndependentScreens
-import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Run
+import XMonad.Util.SpawnOnce
 import System.IO
 
 main = do
@@ -32,8 +33,8 @@ main = do
 detectScreens = do
   count <- countScreens
   if count > 1
-    then spawn "xrandr --output HDMI-1 --off"
-    else spawn "xrandr --output HDMI-1 --auto --left-of eDP-1"
+    then spawn "xrandr --output eDP-1 --auto --output HDMI-1 --off"
+    else spawn "xrandr --output eDP-1 --auto --scale 1x1 --output HDMI-1 --auto --scale 1x1 --left-of eDP-1"
 
 myHandleEventHook = fullscreenEventHook
 
@@ -56,7 +57,7 @@ myAdditionalKeysP =
   , ("M-<Insert>"             , detectScreens                    )
   ]
     
-myLayoutHook = smartBorders $ avoidStruts $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = smartBorders $ avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
     tiled   = Tall nmaster delta ratio
     nmaster = 1     -- The default number of windows in the master pane
