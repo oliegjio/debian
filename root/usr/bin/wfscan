@@ -1,0 +1,2 @@
+sudo ip link set wlo1 up
+sudo iwlist wlo1 scan | grep ESSID

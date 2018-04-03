@@ -1,0 +1,4 @@
+killall wpa_supplicant
+wpa_passphrase $1 $2 > /etc/wpa_supplicant.conf
+wpa_supplicant -B -i wlo1 -c /etc/wpa_supplicant.conf
+dhclient -nw wlo1

@@ -1,0 +1,2 @@
+killall wpa_supplicant
+ip addr flush wlo1

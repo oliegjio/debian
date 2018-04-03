@@ -1,0 +1,27 @@
+https://akshaycv006.wordpress.com/2017/01/12/installing-realtek-rtl8723be-driver-for-ubuntu-debian-or-fedora/
+
+Download:
+https://github.com/lwfinger/rtlwifi_new/tree/master
+
+Install:
+sudo apt-get install linux-headers-$(uname -r) gcc g++ build-essential dkms git
+
+Reboot:
+sudo reboot
+
+Execute:
+make
+sudo make install
+sudo modprobe -rv rtl8723be
+
+Fix if needed:
+sudo modprove -v rtl8723be ant_sel=2
+sudo modprobe -r rtl8723be
+sudo modprobe rtl8723be
+
+------------------------------------------------------------------------------
+
+sudo iwlist wlo1 scan
+sudo wpa_supplicant -B -i wlo1 -c <(wpa_passphrase SSID PASSWORD)
+dhclinet wlo1
+
