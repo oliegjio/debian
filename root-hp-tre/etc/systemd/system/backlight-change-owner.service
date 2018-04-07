@@ -1,0 +1,11 @@
+[Unit]
+Description=Change the owner of intel_backlight
+After=network.target
+
+[Service]
+User=root
+Type=forking
+ExecStart=/bin/chown debie:debie -R /sys/class/backlight/intel_backlight/
+
+[Install]
+WantedBy=multi-user.target
