@@ -1,5 +1,5 @@
 Config
-  { font     = "xft:Monaco:size=13:bold:antialias=true"
+  { font     = "xft:Monaco:size=8:bold:antialias=true"
   , bgColor  = "#1d2224"
   , fgColor  = "#edd400"
   , sepChar  = "%"
@@ -17,7 +17,7 @@ Config
                               , "-O"         , "<fc=#ff8800>Charging</fc>"
                               , "-i"         , "<fc=#00ff00>Charged</fc>"
                               ] 50
-             , Run MultiCpu   [ "--template" , "Cpu: <total0> - <total1> - <total2> - <total3> %"
+             , Run MultiCpu   [ "--template" , "CPU: <total0> - <total1> - <total2> - <total3> %"
                               , "--Low"      , "50"
                               , "--High"     , "85"
                               , "--low"      , "green"

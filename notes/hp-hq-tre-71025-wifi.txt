@@ -1,3 +1,10 @@
+Probably default wifi drivers actually works.
+Do: sudo apt-get install firmware-realtek.
+And enable module: sudo modprobe rtl8723be.
+And probably change anthene.
+
+-----------------------------------------------------------------------------
+
 https://akshaycv006.wordpress.com/2017/01/12/installing-realtek-rtl8723be-driver-for-ubuntu-debian-or-fedora/
 
 Download:
@@ -15,13 +22,14 @@ sudo make install
 sudo modprobe -rv rtl8723be
 
 Fix if needed:
-sudo modprove -v rtl8723be ant_sel=2
+sudo modprove -v rtl8723be ant_sel=0
 sudo modprobe -r rtl8723be
 sudo modprobe rtl8723be
 
 ------------------------------------------------------------------------------
 
 sudo iwlist wlo1 scan
-sudo wpa_supplicant -B -i wlo1 -c < (wpa_passphrase SSID PASSWORD)
+sudo wpa_passphrase SSID PASSWORD > /etc/wpa_supplicant.conf
+sudo wpa_supplicant -B -i wlo1 -c /etc/wpa_supplicant.conf
 dhclinet wlo1
 
