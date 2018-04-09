@@ -1,2 +1,4 @@
 killall wpa_supplicant
+ip addr flush enp2s0
 ip addr flush wlo1
+dhclient -nw enp2s0

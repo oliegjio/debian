@@ -1,5 +1,6 @@
 killall wpa_supplicant
 ip addr flush wlo1
+ip addr flush enp2s0
 wpa_passphrase $1 $2 > /etc/wpa_supplicant.conf
 wpa_supplicant -B -i wlo1 -c /etc/wpa_supplicant.conf
 dhclient -nw wlo1
